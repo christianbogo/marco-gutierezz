@@ -1,0 +1,377 @@
+/* src/styles.css */
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a; /* Dark background like the template */
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.App {
+  text-align: center;
+}
+
+/* --- Navbar --- */
+.navbar {
+  background-color: #111; /* Slightly darker than body for contrast */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+.hire-us-button {
+  background-color: #e0ac1c; /* Gold/Yellow accent from template */
+  color: #111;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.hire-us-button:hover {
+  background-color: #f0c13e;
+}
+
+/* --- General Section Styling --- */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section-dark {
+  background-color: #111; /* Even darker for some sections */
+}
+
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.section-subtitle {
+  font-size: 1.2em;
+  color: #aaa;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background-image: url("https://picsum.photos/seed/hero/1600/900"); /* Placeholder */
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative; /* For overlay and hover effects */
+  overflow: hidden; /* To contain the scaling image */
+}
+
+.hero-section::before {
+  /* Optional overlay for text readability */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section .background-image-animate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease-out; /* Animation */
+  z-index: 0;
+}
+
+.hero-section:hover .background-image-animate {
+  transform: scale(1.05); /* Subtle scaling on hover */
+}
+
+.hero-title {
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.hero-title .accent-text {
+  color: #e0ac1c; /* Gold/Yellow accent */
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  color: #eee;
+}
+
+.hero-awards img {
+  height: 50px;
+  margin: 0 10px;
+  opacity: 0.8;
+}
+
+/* --- CTA Section ("Work with you") --- */
+.cta-section {
+  background-color: #000; /* Very dark */
+  padding: 80px 20px;
+}
+
+.cta-title {
+  font-size: 3em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.cta-title .accent-text {
+  color: #e0ac1c;
+  font-style: italic;
+  display: block; /* For layout like the screenshot */
+}
+
+.cta-text {
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+.subscribe-button {
+  background-color: #333;
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid #555;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.subscribe-button:hover {
+  background-color: #e0ac1c;
+  color: #111;
+  border-color: #e0ac1c;
+}
+
+/* --- About Us Section --- */
+.about-section {
+  background-color: #111;
+  padding: 80px 20px;
+}
+.about-title {
+  font-size: 2em;
+  font-weight: normal;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+.about-main-title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.about-subtitle-text {
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  font-size: 1.1em;
+}
+.services-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.service-item {
+  flex-basis: calc(33.333% - 20px);
+  text-align: left;
+}
+.service-item img {
+  /* Placeholder for icons */
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  background-color: #e0ac1c; /* Placeholder icon color */
+  border-radius: 5px;
+}
+.service-item h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.service-item p {
+  color: #aaa;
+  font-size: 0.95em;
+}
+
+/* --- Featured Productions (Image Grid) --- */
+.featured-productions {
+  padding-bottom: 0; /* Title is part of this section now */
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 0; /* Remove padding if images should touch edges */
+}
+.image-grid-item {
+  position: relative;
+  overflow: hidden; /* For hover effect */
+  aspect-ratio: 4 / 3; /* Maintain aspect ratio */
+}
+.image-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease-out;
+}
+.image-grid-item:hover img {
+  transform: scale(1.1); /* Scaling animation on hover */
+}
+
+/* --- Testimonial Section --- */
+.testimonial-section {
+  background-color: #000;
+  padding: 80px 20px;
+}
+.testimonial-quote {
+  font-size: 2em;
+  font-style: italic;
+  color: #e0ac1c;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.testimonial-author {
+  font-size: 1.1em;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: #000;
+  color: #777;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.9em;
+}
+.footer-social-icons a {
+  color: #777;
+  margin: 0 10px;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+.footer-social-icons a:hover {
+  color: #e0ac1c;
+}
+.footer p {
+  margin: 10px 0 0;
+}
+
+/* --- Animation: Text Fade-in on Scroll --- */
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-text.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Simple hide for mobile, can be replaced with a burger menu */
+  }
+  .hero-title {
+    font-size: 2.5em;
+  }
+  .hero-subtitle {
+    font-size: 1.2em;
+  }
+  .section-title {
+    font-size: 2em;
+  }
+  .cta-title {
+    font-size: 2.2em;
+  }
+  .testimonial-quote {
+    font-size: 1.5em;
+  }
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-item {
+    flex-basis: 100%;
+    max-width: 350px;
+    text-align: center;
+  }
+  .service-item img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
