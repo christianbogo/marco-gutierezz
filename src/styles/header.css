@@ -1,65 +1,135 @@
-/* src/comps/header.css */
 .navbar {
-  background-color: #111; /* Slightly darker than body for contrast */ /* */
-  padding: 15px 30px; /* */
-  display: flex; /* */
-  justify-content: space-between; /* */
-  align-items: center; /* */
-  position: sticky; /* */
-  top: 0; /* */
-  z-index: 1000; /* */
-  border-bottom: 1px solid #333; /* */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: transform 0.4s ease-in-out, background-color 0.4s ease-in-out,
+    border-color 0.4s ease-in-out;
+}
+
+.navbar.no-transform-transition {
+  transition: transform 0s, background-color 0.4s ease-in-out,
+    border-color 0.4s ease-in-out;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link-item,
+.navbar .brand-icon {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.navbar.mode-initial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  transform: translateY(0);
+  border-bottom: none;
+}
+.navbar.mode-initial .navbar-brand,
+.navbar.mode-initial .nav-link-item {
+  color: #fff;
+}
+.navbar.mode-initial .brand-icon {
+  background-color: #fff;
+}
+
+.navbar.mode-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #dddddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar.mode-fixed .navbar-brand,
+.navbar.mode-fixed .nav-link-item {
+  color: #111;
+}
+.navbar.mode-fixed .brand-icon {
+  background-color: #111;
+}
+
+.navbar.mode-fixed.mode-hidden {
+  transform: translateY(-110%);
+}
+
+.navbar.mode-fixed.mode-visible {
+  transform: translateY(0);
 }
 
 .navbar-brand {
-  font-size: 1.8em; /* */
-  font-weight: bold; /* */
-  color: #fff; /* */
-  text-decoration: none; /* */
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.brand-icon {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.5em;
+}
+.brand-text-container {
+  display: inline-block;
+}
+.brand-text {
+  display: inline;
+}
+@media (max-width: 800px) {
+  .brand-text-visuals {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .brand-text-gutierezz {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .brand-text-marco {
+    display: none;
+  }
 }
 
-.nav-links {
-  list-style: none; /* */
-  display: flex; /* */
-  margin: 0; /* */
-  padding: 0; /* */
+.navbar-actions {
+  display: flex;
+  align-items: center;
 }
 
-.nav-links li {
-  margin-left: 20px; /* */
+.nav-link-item {
+  text-decoration: none;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 25px;
+}
+.navbar.mode-initial .nav-link-item:hover {
+  color: #ccc;
+}
+.navbar.mode-fixed .nav-link-item:hover {
+  color: #555;
 }
 
-.nav-links a {
-  color: #ccc; /* */
-  text-decoration: none; /* */
-  font-size: 0.9em; /* */
-  text-transform: uppercase; /* */
-  letter-spacing: 0.5px; /* */
-  transition: color 0.3s ease; /* */
-}
-
-.nav-links a:hover {
-  color: #fff; /* */
+@media (max-width: 400px) {
+  .portfolio-link {
+    display: none;
+  }
 }
 
 .hire-us-button {
-  background-color: #e0ac1c; /* Gold/Yellow accent from template */ /* */
-  color: #111; /* */
-  padding: 10px 20px; /* */
-  text-decoration: none; /* */
-  font-weight: bold; /* */
-  border-radius: 3px; /* */
-  transition: background-color 0.3s ease; /* */
+  background-color: #e0ac1c;
+  color: #111;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
 }
-
 .hire-us-button:hover {
-  background-color: #f0c13e; /* */
+  background-color: #f0c13e;
 }
-
-/* Styles for SocialIcon if needed - current ones are inline */
-/* Example:
-.social-icon-span {
-  margin: 0 5px;
-  cursor: pointer;
-}
-*/

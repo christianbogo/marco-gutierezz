@@ -1,52 +1,97 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Import Link for client-side navigation
-import "../styles/header.css"; // Import the CSS for the header
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import "../styles/header.css";
 
-// Placeholder for social icons (you can use actual icon components later)
-const SocialIcon = ({ platform }: { platform: string }) => (
-  <span style={{ margin: "0 5px", cursor: "pointer" }}>
-    {platform[0].toUpperCase()}
-  </span>
-);
+const SCROLL_DOWN_THRESHOLD = 400;
 
-const Header = () => {
+type NavMode = "initial" | "fixedHidden" | "fixedVisible";
+
+const Header: React.FC = () => {
+  const navRef = useRef<HTMLElement>(null);
+  const [initialNavHeight, setInitialNavHeight] = useState(70);
+
+  const [navMode, _setNavMode] = useState<NavMode>("initial");
+  const navModeRef = useRef<NavMode>("initial");
+
+  const [applyNoTransformTransition, setApplyNoTransformTransition] =
+    useState(false);
+
+  const setNavMode = (newMode: NavMode) => {
+    const oldMode = navModeRef.current;
+
+    if (
+      oldMode === "initial" &&
+      (newMode === "fixedHidden" || newMode === "fixedVisible")
+    ) {
+      setApplyNoTransformTransition(true);
+    }
+
+    navModeRef.current = newMode;
+    _setNavMode(newMode);
+  };
+
+  useEffect(() => {
+    if (navRef.current) {
+      setInitialNavHeight(navRef.current.offsetHeight);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > SCROLL_DOWN_THRESHOLD) {
+        setNavMode("fixedVisible");
+      } else if (initialNavHeight > 0 && currentScrollY > initialNavHeight) {
+        setNavMode("fixedHidden");
+      } else {
+        setNavMode("initial");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [initialNavHeight]);
+
+  useEffect(() => {
+    if (applyNoTransformTransition) {
+      const rafId = requestAnimationFrame(() => {
+        setApplyNoTransformTransition(false);
+      });
+      return () => cancelAnimationFrame(rafId);
+    }
+  }, [applyNoTransformTransition]);
+
+  let navClassName = "navbar";
+  if (navMode === "initial") {
+    navClassName += " mode-initial";
+  } else if (navMode === "fixedHidden") {
+    navClassName += " mode-fixed mode-hidden";
+  } else if (navMode === "fixedVisible") {
+    navClassName += " mode-fixed mode-visible";
+  }
+
+  if (applyNoTransformTransition) {
+    navClassName += " no-transform-transition";
+  }
+
   return (
-    <nav className="navbar">
+    <nav ref={navRef} className={navClassName}>
       <Link to="/" className="navbar-brand">
-        Billey.
+        <span className="brand-icon" aria-hidden="true"></span>
+        <span className="brand-text-container">
+          <span className="brand-text brand-text-marco">Marco </span>
+          <span className="brand-text brand-text-gutierezz">Gutierezz </span>
+          <span className="brand-text brand-text-visuals">Visuals</span>
+        </span>
       </Link>
-      <ul className="nav-links">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/pages">Pages</Link> {/* Example: update path as needed */}
-        </li>
-        <li>
-          <Link to="/elements">Elements</Link>{" "}
-          {/* Example: update path as needed */}
-        </li>
-        <li>
-          <Link to="/portfolio">Portfolio</Link>{" "}
-          {/* Assuming a /portfolio route */}
-        </li>
-        <li>
-          <Link to="/blog">Blog</Link> {/* Example: update path as needed */}
-        </li>
-        <li>
-          <Link to="/shop">Shop</Link> {/* Example: update path as needed */}
-        </li>
-      </ul>
-      <div>
-        <SocialIcon platform="Facebook" />
-        <SocialIcon platform="Instagram" />
-        <SocialIcon platform="Twitter" />
-        <Link
-          to="/hire-us" // Example: update path or make it a mailto link etc.
-          className="hire-us-button"
-          style={{ marginLeft: "20px" }}
-        >
-          HIRE US NOW
+      <div className="navbar-actions">
+        <a href="#portfolio" className="nav-link-item portfolio-link">
+          Portfolio
+        </a>
+        <Link to="/hire-us" className="hire-us-button">
+          Contact
         </Link>
       </div>
     </nav>

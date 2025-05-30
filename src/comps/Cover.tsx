@@ -17,7 +17,7 @@ const Cover = () => {
         <h1 className="hero-title">
           Creators <span className="accent-text">INSPIRED</span>
         </h1>
-        <p className="hero-subtitle">FILM STUDIO SINCE 1977</p>
+        <p className="hero-subtitle">Content Producer / Videographer</p>
         <div className="hero-awards">
           <img
             src="https://picsum.photos/seed/award1/50/70?grayscale"

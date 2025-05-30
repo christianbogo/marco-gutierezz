@@ -1,60 +1,71 @@
-import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom"; // For consistency, though not strictly necessary for # links
-import "../styles/footer.css"; // Import the CSS for the footer
-
-// Reusable component for sections that fade in
-// Consider moving this to a shared utility file (e.g., src/utils/FadeInSection.tsx)
-// if used by multiple components beyond Header and Footer.
-const FadeInSection: React.FC<{
-  children: React.ReactNode;
-  className?: string;
-}> = ({ children, className }) => {
-  const domRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
-    }
-    return () => {
-      if (current) observer.unobserve(current);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={domRef}
-      className={`${className || ""} fade-in-text ${
-        isVisible ? "is-visible" : ""
-      }`}
-    >
-      {children}
-    </div>
-  );
-};
+import React from "react";
+import "../styles/footer.css";
+import FadeInSection from "../utils/FadeInSection";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <FadeInSection>
-        <div className="footer-social-icons">
-          {/* Using Link for consistency, but can be <a> if these are external or non-routed */}
-          <Link to="#facebook">F</Link>
-          <Link to="#twitter">T</Link>
-          <Link to="#instagram">I</Link>
-          <Link to="#pinterest">P</Link>
+        <div className="footer-content">
+          <div className="footer-left">
+            <p>Seattle, Washington, United States</p>
+          </div>
+          <div className="footer-center footer-social-icons">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              F
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              T
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              I
+            </a>
+            <a
+              href="https://dribbble.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Dribbble"
+            >
+              D
+            </a>
+            <a
+              href="https://pinterest.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Pinterest"
+            >
+              P
+            </a>
+          </div>
+          <div className="footer-right">
+            <p>
+              Site managed by{" "}
+              <a
+                href="https://gravatar.com/christianbcutter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                Christian Cutter
+              </a>
+            </p>
+          </div>
         </div>
-        <p>© 2025 Billey Theme by ImagiDev. Inspired by ThemeMove.</p>
-        <p>hello@billey.studio</p>
       </FadeInSection>
     </footer>
   );
