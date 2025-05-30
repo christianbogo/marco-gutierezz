@@ -1,45 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import "./about.css"; // Import the CSS for the About section
-
-// Reusable component for sections that fade in
-// Consider moving this to a shared utility file (e.g., src/utils/FadeInSection.tsx)
-// if used by multiple components.
-const FadeInSection: React.FC<{
-  children: React.ReactNode;
-  className?: string;
-}> = ({ children, className }) => {
-  const domRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
-    }
-    return () => {
-      if (current) observer.unobserve(current);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={domRef}
-      className={`${className || ""} fade-in-text ${
-        isVisible ? "is-visible" : ""
-      }`}
-    >
-      {children}
-    </div>
-  );
-};
+import React from "react";
+import FadeInSection from "../utils/FadeInSection";
+import "../styles/about.css";
 
 const About = () => {
   return (

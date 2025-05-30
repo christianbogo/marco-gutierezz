@@ -1,55 +1,28 @@
-/* src/comps/portfolio.css */
 .featured-productions {
-  padding-bottom: 0; /* Title is part of this section now */ /* */
-  /* General .section styles (padding-top, text-align) are assumed to be global */
+  padding-bottom: 0;
 }
-
-/* If .section-title is not global, define its styles here or specific to portfolio */
-/* For example:
-.featured-productions .section-title {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  font-weight: bold;
-  text-align: center; // If .section doesn't cover this
-}
-*/
 
 .image-grid {
-  display: grid; /* */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* */
-  gap: 10px; /* */
-  padding: 0; /* Remove padding if images should touch edges */ /* */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 0;
 }
 
 .image-grid-item {
-  position: relative; /* */
-  overflow: hidden; /* For hover effect */ /* */
-  aspect-ratio: 4 / 3; /* Maintain aspect ratio */ /* */
-  /* This will also be a FadeInSection, so fade-in styles apply */
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
 }
 
 .image-grid-item img {
-  width: 100%; /* */
-  height: 100%; /* */
-  object-fit: cover; /* */
-  display: block; /* */
-  transition: transform 0.5s ease-out; /* */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease-out;
 }
 
 .image-grid-item:hover img {
-  transform: scale(1.1); /* Scaling animation on hover */ /* */
-}
-
-/* --- Animation: Text Fade-in on Scroll (Needed for FadeInSection) --- */
-/* If FadeInSection is moved to utils, and its CSS is centralized (e.g. src/utils/fadeInSection.css or index.css),
-   you would not need to repeat these rules here. */
-.fade-in-text {
-  opacity: 0; /* */
-  transform: translateY(20px); /* */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* */
-}
-
-.fade-in-text.is-visible {
-  opacity: 1; /* */
-  transform: translateY(0); /* */
+  transform: scale(1.1);
 }

@@ -1,45 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import "./quotes.css"; // Import the CSS for the Quotes section
-
-// Reusable component for sections that fade in
-// REMINDER: This should ideally be in a shared utility file like src/utils/FadeInSection.tsx
-// and imported here, rather than redefined in each component.
-const FadeInSection: React.FC<{
-  children: React.ReactNode;
-  className?: string;
-}> = ({ children, className }) => {
-  const domRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
-    }
-    return () => {
-      if (current) observer.unobserve(current);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={domRef}
-      className={`${className || ""} fade-in-text ${
-        isVisible ? "is-visible" : ""
-      }`}
-    >
-      {children}
-    </div>
-  );
-};
+import React from "react";
+import FadeInSection from "../utils/FadeInSection";
+import "../styles/quotes.css";
 
 const Quotes = () => {
   return (

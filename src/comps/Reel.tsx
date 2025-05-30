@@ -1,7 +1,6 @@
 import React from "react";
-// Assuming FadeInSection is now centralized as per previous recommendations
-import FadeInSection from "../utils/FadeInSection"; // Adjust path if your utils folder is elsewhere
-import "./reel.css"; // Import the CSS for the Reel (CTA) section
+import FadeInSection from "../utils/FadeInSection";
+import "../styles/reel.css";
 
 const Reel = () => {
   return (
@@ -14,7 +13,6 @@ const Reel = () => {
           Let all your needs and requirements then make a request to help us
           understand your brand now.
         </p>
-        {/* The href here might navigate to a contact page or a specific section */}
         <a href="#subscribe" className="subscribe-button">
           SUBSCRIBE FOR NEWSLETTERS
         </a>

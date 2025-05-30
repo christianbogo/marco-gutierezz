@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link for client-side navigation
-import "./header.css"; // Import the CSS for the header
+import "../styles/header.css"; // Import the CSS for the header
 
 // Placeholder for social icons (you can use actual icon components later)
 const SocialIcon = ({ platform }: { platform: string }) => (

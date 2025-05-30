@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom"; // For consistency, though not strictly necessary for # links
-import "./footer.css"; // Import the CSS for the footer
+import "../styles/footer.css"; // Import the CSS for the footer
 
 // Reusable component for sections that fade in
 // Consider moving this to a shared utility file (e.g., src/utils/FadeInSection.tsx)
