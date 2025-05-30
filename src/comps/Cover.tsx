@@ -1,38 +1,75 @@
 import React from "react";
-import FadeInSection from "../utils/FadeInSection";
+import FadeInSection from "../utils/FadeInSection"; // Assuming this path is correct
 import "../styles/cover.css";
 
 const Cover = () => {
+  // Placeholder email and social links - update as needed
+  const userEmail = "hello@marcovisuals.com"; // Example email for Marco
+  const socialLinks = [
+    { name: "F", url: "#facebook", label: "Facebook" },
+    { name: "I", url: "#instagram", label: "Instagram" },
+    { name: "T", url: "#twitter", label: "Twitter" },
+  ];
+
   return (
-    <section className="hero-section" id="home">
+    <section className="cover-section" id="home">
       <div
-        className="background-image-animate"
+        className="cover-background-image"
         style={{
           backgroundImage:
-            "url('https://picsum.photos/seed/heroImg/1920/1080')",
+            "url('https://picsum.photos/seed/marcoOutdoorBg/1920/1080')", // Replace with Marco's actual background image
         }}
-        title="Creators INSPIRED - Background"
+        title="Outdoor scenic background for Marco Visuals"
       ></div>
-      <FadeInSection className="hero-content fade-in-section">
-        <h1 className="hero-title">
-          Creators <span className="accent-text">INSPIRED</span>
-        </h1>
-        <p className="hero-subtitle">Content Producer / Videographer</p>
-        <div className="hero-awards">
-          <img
-            src="https://picsum.photos/seed/award1/50/70?grayscale"
-            alt="Award 1"
-          />
-          <img
-            src="https://picsum.photos/seed/award2/50/70?grayscale"
-            alt="Award 2"
-          />
-          <img
-            src="https://picsum.photos/seed/award3/50/70?grayscale"
-            alt="Award 3"
-          />
+      <div className="cover-overlay-tint"></div>
+
+      <div className="cover-left-overlay">
+        <a href={`mailto:${userEmail}`} className="cover-email-link">
+          {userEmail}
+        </a>
+      </div>
+
+      <div className="cover-center-overlay">
+        <FadeInSection className="cover-content">
+          <div className="cover-headline-secondary">Marco Gutierrez</div>
+          <h1 className="cover-headline-primary">VISUALS</h1>
+          <p className="cover-subtitle">Content Producer / Videographer</p>
+          <div className="cover-logos">
+            {/* Replace with actual client or partner logos */}
+            <img
+              src="https://picsum.photos/seed/clientlogo1/120/50?grayscale&invert=1"
+              alt="Client Logo 1"
+              className="client-logo"
+            />
+            <img
+              src="https://picsum.photos/seed/clientlogo2/120/50?grayscale&invert=1"
+              alt="Client Logo 2"
+              className="client-logo"
+            />
+            <img
+              src="https://picsum.photos/seed/clientlogo3/120/50?grayscale&invert=1"
+              alt="Client Logo 3"
+              className="client-logo"
+            />
+          </div>
+        </FadeInSection>
+      </div>
+
+      <div className="cover-right-overlay">
+        <div className="cover-social-icons">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              aria-label={social.label}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.name}
+            </a>
+          ))}
         </div>
-      </FadeInSection>
+      </div>
     </section>
   );
 };

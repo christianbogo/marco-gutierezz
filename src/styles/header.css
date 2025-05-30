@@ -29,6 +29,7 @@
   transform: translateY(0);
   border-bottom: none;
 }
+
 .navbar.mode-initial .navbar-brand,
 .navbar.mode-initial .nav-link-item {
   color: #fff;

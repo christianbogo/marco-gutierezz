@@ -82,7 +82,7 @@ const Header: React.FC = () => {
         <span className="brand-icon" aria-hidden="true"></span>
         <span className="brand-text-container">
           <span className="brand-text brand-text-marco">Marco </span>
-          <span className="brand-text brand-text-gutierezz">Gutierezz </span>
+          <span className="brand-text brand-text-gutierezz">Gutierrez </span>
           <span className="brand-text brand-text-visuals">Visuals</span>
         </span>
       </Link>
