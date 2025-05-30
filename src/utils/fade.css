@@ -1,0 +1,13 @@
+/* src/utils/fadeInSection.css */
+.fade-in-section {
+  /* Or .fade-in-text if you prefer that class name */
+  opacity: 0;
+  transform: translateY(20px); /* Or your preferred starting transform */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  /* Or .fade-in-text.is-visible */
+  opacity: 1;
+  transform: translateY(0);
+}

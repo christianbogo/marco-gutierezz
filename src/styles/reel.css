@@ -1,0 +1,63 @@
+/* src/comps/reel.css */
+
+/* Styles specific to the CTA (Reel) section.
+   General .section styles are assumed to be global (e.g., in src/styles.css or src/index.css). */
+.cta-section {
+  background-color: #000; /* Very dark */ /* */
+  padding: 80px 20px; /* */
+  /* text-align: center; is part of .section from styles.css */
+}
+
+.cta-title {
+  font-size: 3em; /* */
+  color: #fff; /* */
+  margin-bottom: 10px; /* */
+}
+
+.cta-title .accent-text {
+  color: #e0ac1c; /* */
+  font-style: italic; /* */
+  display: block; /* For layout like the screenshot */ /* */
+}
+
+.cta-text {
+  color: #ccc; /* */
+  max-width: 600px; /* */
+  margin: 0 auto 30px auto; /* */
+}
+
+.subscribe-button {
+  background-color: #333; /* */
+  color: #fff; /* */
+  padding: 15px 30px; /* */
+  text-decoration: none; /* */
+  font-weight: bold; /* */
+  border-radius: 3px; /* */
+  border: 1px solid #555; /* */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* */
+}
+
+.subscribe-button:hover {
+  background-color: #e0ac1c; /* */
+  color: #111; /* */
+  border-color: #e0ac1c; /* */
+}
+
+/*
+  If FadeInSection.tsx now imports its own CSS (e.g., src/utils/fadeInSection.css),
+  or if the .fade-in-text styles are in a global CSS file (like index.css),
+  you DO NOT need to repeat the .fade-in-text and .fade-in-text.is-visible rules below.
+  Including them here would be redundant if FadeInSection handles its own styles.
+*/
+/*
+.fade-in-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-text.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+*/

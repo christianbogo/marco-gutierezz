@@ -1,0 +1,65 @@
+/* src/comps/header.css */
+.navbar {
+  background-color: #111; /* Slightly darker than body for contrast */ /* */
+  padding: 15px 30px; /* */
+  display: flex; /* */
+  justify-content: space-between; /* */
+  align-items: center; /* */
+  position: sticky; /* */
+  top: 0; /* */
+  z-index: 1000; /* */
+  border-bottom: 1px solid #333; /* */
+}
+
+.navbar-brand {
+  font-size: 1.8em; /* */
+  font-weight: bold; /* */
+  color: #fff; /* */
+  text-decoration: none; /* */
+}
+
+.nav-links {
+  list-style: none; /* */
+  display: flex; /* */
+  margin: 0; /* */
+  padding: 0; /* */
+}
+
+.nav-links li {
+  margin-left: 20px; /* */
+}
+
+.nav-links a {
+  color: #ccc; /* */
+  text-decoration: none; /* */
+  font-size: 0.9em; /* */
+  text-transform: uppercase; /* */
+  letter-spacing: 0.5px; /* */
+  transition: color 0.3s ease; /* */
+}
+
+.nav-links a:hover {
+  color: #fff; /* */
+}
+
+.hire-us-button {
+  background-color: #e0ac1c; /* Gold/Yellow accent from template */ /* */
+  color: #111; /* */
+  padding: 10px 20px; /* */
+  text-decoration: none; /* */
+  font-weight: bold; /* */
+  border-radius: 3px; /* */
+  transition: background-color 0.3s ease; /* */
+}
+
+.hire-us-button:hover {
+  background-color: #f0c13e; /* */
+}
+
+/* Styles for SocialIcon if needed - current ones are inline */
+/* Example:
+.social-icon-span {
+  margin: 0 5px;
+  cursor: pointer;
+}
+*/
