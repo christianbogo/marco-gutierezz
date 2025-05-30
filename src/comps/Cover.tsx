@@ -4,7 +4,7 @@ import "../styles/cover.css";
 
 const Cover = () => {
   // Placeholder email and social links - update as needed
-  const userEmail = "hello@marcovisuals.com"; // Example email for Marco
+  const userEmail = "marcogutierrezho@gmail.com"; // Example email for Marco
   const socialLinks = [
     { name: "F", url: "#facebook", label: "Facebook" },
     { name: "I", url: "#instagram", label: "Instagram" },
