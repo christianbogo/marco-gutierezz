@@ -1,20 +1,50 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import FadeInSection from "../utils/FadeInSection";
+import { getFeaturedProjects } from "../data/projects";
 import "../styles/portfolio.css";
 
 const Portfolio = () => {
+  const projects = getFeaturedProjects();
+
+  // Use manual thumbnails as primary, with Bunny.net as fallback (once access is fixed)
+  const getProjectThumbnail = (project: any) => {
+    // Prioritize manual thumbnails since Bunny.net is returning 403
+    if (project.thumbnails && project.thumbnails.length > 0) {
+      return project.thumbnails[0];
+    }
+
+    // Fallback to Bunny.net thumbnail (for when access is configured)
+    const firstVideo = project.videos[0];
+    if (firstVideo) {
+      return `https://vz-${firstVideo.bunnyLibraryId}.b-cdn.net/${firstVideo.bunnyVideoId}/thumbnail.jpg`;
+    }
+
+    // Final fallback
+    return "/images/placeholder.jpg";
+  };
+
   return (
     <section className="section featured-productions" id="portfolio">
       <FadeInSection>
         <h2 className="section-title">Featured Productions</h2>
       </FadeInSection>
       <div className="image-grid">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
-          <FadeInSection key={item} className="image-grid-item">
-            <img
-              src={`https://picsum.photos/seed/prod${item}/600/400`}
-              alt={`Production ${item}`}
-            />
+        {projects.map((project) => (
+          <FadeInSection key={project.id} className="image-grid-item">
+            <Link to={`/project/${project.slug}`} className="project-link">
+              <div className="image-wrapper">
+                <img
+                  src={getProjectThumbnail(project)}
+                  alt={`${project.title} production`}
+                  loading="lazy"
+                />
+                <div className="project-overlay">
+                  <span className="view-project">View Project</span>
+                </div>
+              </div>
+              <h3 className="project-title">{project.title}</h3>
+            </Link>
           </FadeInSection>
         ))}
       </div>

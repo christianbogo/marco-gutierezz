@@ -5,14 +5,28 @@
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 10px;
+  gap: 20px;
   padding: 0;
 }
 
 .image-grid-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-grid-item .image-wrapper {
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 3;
+  width: 100%;
 }
 
 .image-grid-item img {
@@ -23,6 +37,48 @@
   transition: transform 0.5s ease-out;
 }
 
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.view-project {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .image-grid-item:hover img {
   transform: scale(1.1);
+}
+
+.image-grid-item:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-title {
+  margin: 15px 0 0 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover .project-title {
+  color: #e0ac1c;
 }
