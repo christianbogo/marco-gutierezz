@@ -37,6 +37,12 @@
 .navbar.mode-initial .brand-icon {
   background-color: #fff;
 }
+.navbar.mode-initial .brand-logo-light {
+  display: inline-block;
+}
+.navbar.mode-initial .brand-logo-dark {
+  display: none;
+}
 
 .navbar.mode-fixed {
   position: fixed;
@@ -52,6 +58,12 @@
 }
 .navbar.mode-fixed .brand-icon {
   background-color: #111;
+}
+.navbar.mode-fixed .brand-logo-light {
+  display: none;
+}
+.navbar.mode-fixed .brand-logo-dark {
+  display: inline-block;
 }
 
 .navbar.mode-fixed.mode-hidden {

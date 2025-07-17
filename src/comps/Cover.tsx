@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import FadeInSection from "../utils/FadeInSection";
-import { projects } from "../data/projects";
 import "../styles/cover.css";
 
 const SLIDESHOW_INTERVAL = 4000; // 4 seconds
@@ -29,9 +27,6 @@ const SELECTED_THUMBNAILS = [
 
 const Cover = () => {
   const userEmail = "marcogutierrezho@gmail.com";
-  const [randomProjects, setRandomProjects] = useState<
-    Array<{ project: any; thumbnail: string }>
-  >([]);
 
   // Slideshow state
   const [slideshowImages, setSlideshowImages] = useState<string[]>([]);
@@ -40,18 +35,6 @@ const Cover = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Get all featured projects and their thumbnails for preview images
-    const featuredProjects = projects.filter((p) => p.featured);
-    const allThumbnails: Array<{ project: any; thumbnail: string }> = [];
-    featuredProjects.forEach((project) => {
-      project.thumbnails.forEach((thumbnail) => {
-        allThumbnails.push({ project, thumbnail });
-      });
-    });
-    // Shuffle and take first 3 for preview
-    const shuffled = allThumbnails.sort(() => 0.5 - Math.random());
-    setRandomProjects(shuffled.slice(0, 3));
-
     // Shuffle the selected thumbnails for the slideshow
     const shuffledImages = [...SELECTED_THUMBNAILS].sort(
       () => 0.5 - Math.random()
@@ -102,21 +85,6 @@ const Cover = () => {
           <div className="cover-headline-secondary">Marco Gutierrez</div>
           <h1 className="cover-headline-primary">VISUALS</h1>
           <p className="cover-subtitle">Content Producer / Videographer</p>
-          <div className="cover-logos">
-            {randomProjects.map((item, index) => (
-              <Link
-                key={index}
-                to={`/project/${item.project.slug}`}
-                className="client-logo-link"
-              >
-                <img
-                  src={item.thumbnail}
-                  alt={`${item.project.title} project`}
-                  className="client-logo"
-                />
-              </Link>
-            ))}
-          </div>
         </FadeInSection>
       </div>
 

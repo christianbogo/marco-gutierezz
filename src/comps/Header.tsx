@@ -92,7 +92,12 @@ const Header: React.FC = () => {
         <img
           src="/logo.svg"
           alt="Marco Gutierezz Logo"
-          className="brand-logo"
+          className="brand-logo brand-logo-light"
+        />
+        <img
+          src="/18-video.svg"
+          alt="Marco Gutierezz Logo"
+          className="brand-logo brand-logo-dark"
         />
         <span className="brand-text-container">
           <span className="brand-text brand-text-marco">Marco </span>
