@@ -6,6 +6,27 @@ import "../styles/cover.css";
 
 const SLIDESHOW_INTERVAL = 4000; // 4 seconds
 
+// Only use these specific thumbnails for the slideshow
+const SELECTED_THUMBNAILS = [
+  "/images/projects/thumbnails/adrian-3.png",
+  "/images/projects/thumbnails/adrian-4.png",
+  "/images/projects/thumbnails/adrian-5.png",
+  "/images/projects/thumbnails/brudi-brothers-4.png",
+  "/images/projects/thumbnails/brudi-brothers-6.png",
+  "/images/projects/thumbnails/filson-5.png",
+  "/images/projects/thumbnails/filson-6.png",
+  "/images/projects/thumbnails/filson-7.png",
+  "/images/projects/thumbnails/filson-10.png",
+  "/images/projects/thumbnails/filson-11.png",
+  "/images/projects/thumbnails/filson-12.png",
+  "/images/projects/thumbnails/realtree-3.png",
+  "/images/projects/thumbnails/realtree-4.png",
+  "/images/projects/thumbnails/thousand-men-1.png",
+  "/images/projects/thumbnails/thousand-men-2.png",
+  "/images/projects/thumbnails/thousand-men-3.png",
+  "/images/projects/thumbnails/thousand-men-4.png",
+];
+
 const Cover = () => {
   const userEmail = "marcogutierrezho@gmail.com";
   const [randomProjects, setRandomProjects] = useState<
@@ -22,21 +43,19 @@ const Cover = () => {
     // Get all featured projects and their thumbnails for preview images
     const featuredProjects = projects.filter((p) => p.featured);
     const allThumbnails: Array<{ project: any; thumbnail: string }> = [];
-    const allImages: string[] = [];
-
     featuredProjects.forEach((project) => {
       project.thumbnails.forEach((thumbnail) => {
         allThumbnails.push({ project, thumbnail });
-        allImages.push(thumbnail);
       });
     });
-
     // Shuffle and take first 3 for preview
     const shuffled = allThumbnails.sort(() => 0.5 - Math.random());
     setRandomProjects(shuffled.slice(0, 3));
 
-    // Shuffle all images for slideshow
-    const shuffledImages = allImages.sort(() => 0.5 - Math.random());
+    // Shuffle the selected thumbnails for the slideshow
+    const shuffledImages = [...SELECTED_THUMBNAILS].sort(
+      () => 0.5 - Math.random()
+    );
     setSlideshowImages(shuffledImages);
     setCurrentSlide(0);
   }, []);
