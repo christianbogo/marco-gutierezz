@@ -142,10 +142,10 @@
 }
 
 .client-logo {
-  height: clamp(30px, 6vw, 45px);
+  height: clamp(50px, 8vw, 80px);
   opacity: 0.7;
   transition: opacity 0.3s ease;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .client-logo-link:hover .client-logo {

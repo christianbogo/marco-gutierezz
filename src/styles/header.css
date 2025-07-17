@@ -144,5 +144,5 @@
   margin-right: 8px;
   vertical-align: middle;
   position: relative;
-  top: 2px; /* Raise the logo slightly for better alignment */
+  bottom: 2px; /* Raise the logo slightly for better alignment */
 }
