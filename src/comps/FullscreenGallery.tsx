@@ -23,13 +23,45 @@ const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({
     setCurrentIndex(initialIndex);
   }, [initialIndex]);
 
-  const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
+  const goToNext = useCallback(
+    (e?: React.MouseEvent) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    },
+    [images.length]
+  );
 
-  const goToPrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+  const goToPrevious = useCallback(
+    (e?: React.MouseEvent) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    },
+    [images.length]
+  );
+
+  const handleThumbnailClick = useCallback(
+    (index: number, e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCurrentIndex(index);
+    },
+    []
+  );
+
+  const handleCloseClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onClose();
+    },
+    [onClose]
+  );
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -50,7 +82,7 @@ const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
@@ -61,12 +93,12 @@ const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fullscreen-gallery-overlay" onClick={onClose}>
+    <div className="fullscreen-gallery-overlay" onClick={handleCloseClick}>
       <div className="fullscreen-gallery-container">
         {/* Close Button */}
         <button
           className="gallery-close-btn"
-          onClick={onClose}
+          onClick={handleCloseClick}
           aria-label="Close gallery"
         >
           ×
@@ -118,7 +150,7 @@ const FullscreenGallery: React.FC<FullscreenGalleryProps> = ({
                 className={`gallery-thumb ${
                   index === currentIndex ? "active" : ""
                 }`}
-                onClick={() => setCurrentIndex(index)}
+                onClick={(e) => handleThumbnailClick(index, e)}
               >
                 <img src={image} alt={`Thumbnail ${index + 1}`} />
               </button>

@@ -7,17 +7,10 @@ export interface Video {
   duration?: string; // e.g., "2:30"
   description?: string;
   credits: {
-    dp?: string; // Director of Photography
-    exec?: string; // Executive Producer
-    talent?: string[];
-    client?: string;
-    agency?: string;
-    year?: string;
-    director?: string;
-    producer?: string;
-    editor?: string;
-    colorist?: string;
-    [key: string]: any; // Allow for custom credit fields
+    [key: number]: {
+      title: string;
+      name: string;
+    };
   };
 }
 
@@ -32,7 +25,7 @@ export interface Project {
   featured?: boolean; // Whether to show on homepage
 }
 
-// Your project data - updated with individual video credits
+// Your project data - updated to use manual credits structure
 export const projects: Project[] = [
   {
     id: "adrian-milanio",
@@ -42,6 +35,10 @@ export const projects: Project[] = [
     thumbnails: [
       "/images/projects/thumbnails/adrian-1.png",
       "/images/projects/thumbnails/adrian-2.png",
+      "/images/projects/thumbnails/adrian-3.png",
+      "/images/projects/thumbnails/adrian-4.png",
+      "/images/projects/thumbnails/adrian-5.png",
+      "/images/projects/thumbnails/adrian-6.png",
     ],
     videos: [
       {
@@ -51,11 +48,26 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "2:06",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          talent: ["Adrian Milanio"],
-          client: "Adrian Milanio",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Marco Gutierrez",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Talent",
+            name: "Adrian Milanio",
+          },
+          4: {
+            title: "Client",
+            name: "Adrian Milanio",
+          },
+          5: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
       {
@@ -65,11 +77,26 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "1:57",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          talent: ["Adrian Milanio"],
-          client: "Adrian Milanio",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Marco Gutierrez",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Talent",
+            name: "Adrian Milanio",
+          },
+          4: {
+            title: "Client",
+            name: "Adrian Milanio",
+          },
+          5: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
     ],
@@ -84,6 +111,9 @@ export const projects: Project[] = [
       "/images/projects/thumbnails/brudi-brothers-1.png",
       "/images/projects/thumbnails/brudi-brothers-2.png",
       "/images/projects/thumbnails/brudi-brothers-3.png",
+      "/images/projects/thumbnails/brudi-brothers-4.png",
+      "/images/projects/thumbnails/brudi-brothers-5.png",
+      "/images/projects/thumbnails/brudi-brothers-6.png",
     ],
     videos: [
       {
@@ -93,12 +123,30 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "2:48",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Brudi Brothers",
-          producer: "Marco Gutierrez",
-          talent: ["Brudi Brothers"],
-          client: "Brudi Brothers",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Brudi Brothers",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Producer",
+            name: "Marco Gutierrez",
+          },
+          4: {
+            title: "Talent",
+            name: "Brudi Brothers",
+          },
+          5: {
+            title: "Client",
+            name: "Brudi Brothers",
+          },
+          6: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
       {
@@ -108,12 +156,30 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "3:23",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Brudi Brothers",
-          producer: "Marco Gutierrez",
-          talent: ["Brudi Brothers"],
-          client: "Brudi Brothers",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Brudi Brothers",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Producer",
+            name: "Marco Gutierrez",
+          },
+          4: {
+            title: "Talent",
+            name: "Brudi Brothers",
+          },
+          5: {
+            title: "Client",
+            name: "Brudi Brothers",
+          },
+          6: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
     ],
@@ -128,6 +194,17 @@ export const projects: Project[] = [
       "/images/projects/thumbnails/filson-1.png",
       "/images/projects/thumbnails/filson-2.png",
       "/images/projects/thumbnails/filson-3.png",
+      "/images/projects/thumbnails/filson-4.png",
+      "/images/projects/thumbnails/filson-5.png",
+      "/images/projects/thumbnails/filson-6.png",
+      "/images/projects/thumbnails/filson-7.png",
+      "/images/projects/thumbnails/filson-8.png",
+      "/images/projects/thumbnails/filson-9.png",
+      "/images/projects/thumbnails/filson-10.png",
+      "/images/projects/thumbnails/filson-11.png",
+      "/images/projects/thumbnails/filson-12.png",
+      "/images/projects/thumbnails/filson-16.png",
+      "/images/projects/thumbnails/filson-17.png",
     ],
     videos: [
       {
@@ -137,12 +214,12 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "2:49",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          producer: "Filson Creative Team",
-          client: "Filson",
-          agency: "In-House",
-          year: "2024",
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Producer", name: "Filson Creative Team" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Agency", name: "In-House" },
+          6: { title: "Year", name: "2024" },
         },
       },
       {
@@ -152,11 +229,81 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "0:11",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          editor: "Marco Gutierrez",
-          client: "Filson",
-          year: "2024",
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Editor", name: "Marco Gutierrez" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
+        },
+      },
+      {
+        id: "filson-dryden-spin",
+        title: "Filson - Dryden Backpack Solo Spin",
+        bunnyVideoId: "3d90044f-e943-45f4-903d-eec3ae459498",
+        bunnyLibraryId: "468791",
+        duration: "0:10",
+        credits: {
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Editor", name: "Marco Gutierrez" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
+        },
+      },
+      {
+        id: "filson-mens-spring",
+        title: "Filson - Men's Spring Collection",
+        bunnyVideoId: "cdeb305f-6e88-400f-a50a-bbe13222e650",
+        bunnyLibraryId: "468791",
+        duration: "0:30",
+        credits: {
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Producer", name: "Filson Creative Team" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
+        },
+      },
+      {
+        id: "filson-rangeland-shirts",
+        title: "Filson - Rangeland Shirts",
+        bunnyVideoId: "90f98df1-4b67-4348-9854-b5db0f1c3654",
+        bunnyLibraryId: "468791",
+        duration: "0:20",
+        credits: {
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Producer", name: "Filson Creative Team" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
+        },
+      },
+      {
+        id: "filson-ranger-anorak",
+        title: "Filson - Ranger LT Anorak",
+        bunnyVideoId: "e7a1cd4a-48bb-4648-a6a4-93fa522f2061",
+        bunnyLibraryId: "468791",
+        duration: "0:18",
+        credits: {
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Producer", name: "Filson Creative Team" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
+        },
+      },
+      {
+        id: "filson-womens-spring",
+        title: "Filson - Women's Spring Collection",
+        bunnyVideoId: "b450ecb1-a52f-473a-bcc6-31dd814cedd3",
+        bunnyLibraryId: "468791",
+        duration: "0:28",
+        credits: {
+          1: { title: "Director", name: "Marco Gutierrez" },
+          2: { title: "Director of Photography", name: "Marco Gutierrez" },
+          3: { title: "Producer", name: "Filson Creative Team" },
+          4: { title: "Client", name: "Filson" },
+          5: { title: "Year", name: "2024" },
         },
       },
     ],
@@ -170,6 +317,8 @@ export const projects: Project[] = [
     thumbnails: [
       "/images/projects/thumbnails/kraken-1.png",
       "/images/projects/thumbnails/kraken-2.png",
+      "/images/projects/thumbnails/kraken-3.png",
+      "/images/projects/thumbnails/kraken-4.png",
     ],
     videos: [
       {
@@ -179,11 +328,26 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "0:28",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          producer: "Kraken Rum",
-          client: "Kraken x Filson",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Marco Gutierrez",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Producer",
+            name: "Kraken Rum",
+          },
+          4: {
+            title: "Client",
+            name: "Kraken x Filson",
+          },
+          5: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
     ],
@@ -194,7 +358,12 @@ export const projects: Project[] = [
     title: "Realtree x Filson",
     slug: "realtree-filson",
     client: "Realtree x Filson",
-    thumbnails: ["/images/projects/thumbnails/realtree-1.png"],
+    thumbnails: [
+      "/images/projects/thumbnails/realtree-1.png",
+      "/images/projects/thumbnails/realtree-2.png",
+      "/images/projects/thumbnails/realtree-3.png",
+      "/images/projects/thumbnails/realtree-4.png",
+    ],
     videos: [
       {
         id: "realtree-collab",
@@ -203,11 +372,26 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "0:44",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          producer: "Filson Creative",
-          client: "Realtree x Filson",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Marco Gutierrez",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Producer",
+            name: "Filson Creative",
+          },
+          4: {
+            title: "Client",
+            name: "Realtree x Filson",
+          },
+          5: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
     ],
@@ -219,6 +403,10 @@ export const projects: Project[] = [
     slug: "ten-thousand-filson",
     client: "Ten Thousand x Filson",
     thumbnails: [
+      "/images/projects/thumbnails/thousand-men-1.png",
+      "/images/projects/thumbnails/thousand-men-2.png",
+      "/images/projects/thumbnails/thousand-men-3.png",
+      "/images/projects/thumbnails/thousand-men-4.png",
       "/images/projects/thumbnails/ten-thousand-1.png",
       "/images/projects/thumbnails/ten-thousand-2.png",
       "/images/projects/thumbnails/ten-thousand-3.png",
@@ -232,12 +420,30 @@ export const projects: Project[] = [
         bunnyLibraryId: "468791",
         duration: "0:31",
         credits: {
-          dp: "Marco Gutierrez",
-          director: "Marco Gutierrez",
-          producer: "Ten Thousand",
-          client: "Ten Thousand x Filson",
-          agency: "Ten Thousand Creative",
-          year: "2024",
+          1: {
+            title: "Director",
+            name: "Marco Gutierrez",
+          },
+          2: {
+            title: "Director of Photography",
+            name: "Marco Gutierrez",
+          },
+          3: {
+            title: "Producer",
+            name: "Ten Thousand",
+          },
+          4: {
+            title: "Client",
+            name: "Ten Thousand x Filson",
+          },
+          5: {
+            title: "Agency",
+            name: "Ten Thousand Creative",
+          },
+          6: {
+            title: "Year",
+            name: "2024",
+          },
         },
       },
     ],

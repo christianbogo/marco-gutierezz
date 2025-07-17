@@ -1,8 +1,31 @@
-import React from "react";
-import FadeInSection from "../utils/FadeInSection"; // Assuming this path is correct
+import React, { useState } from "react";
+import FadeInSection from "../utils/FadeInSection";
 import "../styles/about.css";
 
 const About = () => {
+  const userEmail = "marcogutierrezho@gmail.com";
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(userEmail);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      // fallback for older browsers
+      const textarea = document.createElement("textarea");
+      textarea.value = userEmail;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err2) {}
+      document.body.removeChild(textarea);
+    }
+  };
+
   return (
     <section className="section about-section" id="about">
       <FadeInSection>
@@ -16,7 +39,7 @@ const About = () => {
           <div className="about-intro-right">
             <p className="about-description-text">
               <strong>
-                I’m a Business Administration and Marketing graduate from
+                I'm a Business Administration and Marketing graduate from
                 Seattle Pacific University with 6+ years of video production and
                 photography experience.
               </strong>
@@ -33,9 +56,9 @@ const About = () => {
         <div className="services-grid">
           <div className="service-item">
             <img
-              src="https://picsum.photos/seed/videoprodicon/50/50?grayscale"
+              src="/images/icons/video.svg"
               alt="Video Production Icon"
-              className="service-icon"
+              className="service-icon-img"
             />
             <h3>Video Production</h3>
             <p>
@@ -45,9 +68,9 @@ const About = () => {
           </div>
           <div className="service-item">
             <img
-              src="https://picsum.photos/seed/contentdevicon/50/50?grayscale"
+              src="/images/icons/film.svg"
               alt="Content Development Icon"
-              className="service-icon"
+              className="service-icon-img"
             />
             <h3>Development & Strategy</h3>
             <p>
@@ -57,9 +80,9 @@ const About = () => {
           </div>
           <div className="service-item">
             <img
-              src="https://picsum.photos/seed/postprodicon/50/50?grayscale"
+              src="/images/icons/monitor.svg"
               alt="Post-Production Icon"
-              className="service-icon"
+              className="service-icon-img"
             />
             <h3>Post-Production</h3>
             <p>
@@ -67,6 +90,18 @@ const About = () => {
               professional final product.
             </p>
           </div>
+        </div>
+
+        <div className="about-cta">
+          <h3>Ready to Bring Your Vision to Life?</h3>
+          <p>
+            Let's discuss your project and create something extraordinary
+            together. I'm here to help you tell your story through compelling
+            visual content.
+          </p>
+          <button className="about-cta-button" onClick={handleCopyEmail}>
+            {copied ? "Email Copied!" : "Get in Touch"}
+          </button>
         </div>
       </FadeInSection>
     </section>

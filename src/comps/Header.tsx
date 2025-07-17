@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/header.css";
 
 const SCROLL_DOWN_THRESHOLD = 400;
@@ -9,6 +9,7 @@ type NavMode = "initial" | "fixedHidden" | "fixedVisible";
 const Header: React.FC = () => {
   const navRef = useRef<HTMLElement>(null);
   const [initialNavHeight, setInitialNavHeight] = useState(70);
+  const location = useLocation();
 
   const [navMode, _setNavMode] = useState<NavMode>("initial");
   const navModeRef = useRef<NavMode>("initial");
@@ -63,6 +64,15 @@ const Header: React.FC = () => {
     }
   }, [applyNoTransformTransition]);
 
+  const handlePortfolioClick = (e: React.MouseEvent) => {
+    if (location.pathname !== "/") {
+      // If not on home page, navigate to home and scroll to portfolio
+      e.preventDefault();
+      window.location.href = "/#portfolio";
+    }
+    // If on home page, let the default anchor behavior work
+  };
+
   let navClassName = "navbar";
   if (navMode === "initial") {
     navClassName += " mode-initial";
@@ -79,7 +89,11 @@ const Header: React.FC = () => {
   return (
     <nav ref={navRef} className={navClassName}>
       <Link to="/" className="navbar-brand">
-        <span className="brand-icon" aria-hidden="true"></span>
+        <img
+          src="/logo.svg"
+          alt="Marco Gutierezz Logo"
+          className="brand-logo"
+        />
         <span className="brand-text-container">
           <span className="brand-text brand-text-marco">Marco </span>
           <span className="brand-text brand-text-gutierezz">Gutierrez </span>
@@ -87,12 +101,16 @@ const Header: React.FC = () => {
         </span>
       </Link>
       <div className="navbar-actions">
-        <a href="#portfolio" className="nav-link-item portfolio-link">
+        <a
+          href="#portfolio"
+          className="nav-link-item portfolio-link"
+          onClick={handlePortfolioClick}
+        >
           Portfolio
         </a>
-        <Link to="/hire-us" className="hire-us-button">
+        <a href="/#about" className="hire-us-button">
           Contact
-        </Link>
+        </a>
       </div>
     </nav>
   );

@@ -12,44 +12,16 @@ const Footer = () => {
           </div>
           <div className="footer-center footer-social-icons">
             <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              F
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              T
-            </a>
-            <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/marcotgutierrez/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              I
-            </a>
-            <a
-              href="https://dribbble.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Dribbble"
-            >
-              D
-            </a>
-            <a
-              href="https://pinterest.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pinterest"
-            >
-              P
+              <img
+                src="/images/icons/instagram.svg"
+                alt="Instagram"
+                className="social-icon"
+              />
             </a>
           </div>
           <div className="footer-right">

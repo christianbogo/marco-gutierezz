@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 interface BunnyVideoPlayerProps {
   videoId: string;
   libraryId: string;
+  cdnHostname?: string; // Optional CDN hostname override
   poster?: string;
   className?: string;
 }
@@ -10,6 +11,7 @@ interface BunnyVideoPlayerProps {
 const BunnyVideoPlayer: React.FC<BunnyVideoPlayerProps> = ({
   videoId,
   libraryId,
+  cdnHostname,
   poster,
   className,
 }) => {
@@ -17,12 +19,15 @@ const BunnyVideoPlayer: React.FC<BunnyVideoPlayerProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Use provided CDN hostname or fall back to library ID format
+  const baseUrl = cdnHostname || `vz-${libraryId}.b-cdn.net`;
+
   // Try multiple URL formats
   const videoUrls = [
-    `https://vz-${libraryId}.b-cdn.net/${videoId}/playlist.m3u8`, // HLS
-    `https://vz-${libraryId}.b-cdn.net/${videoId}/play_720p.mp4`, // Direct MP4
-    `https://vz-${libraryId}.b-cdn.net/${videoId}/play_480p.mp4`, // Lower quality fallback
-    `https://vz-${libraryId}.b-cdn.net/${videoId}/play_360p.mp4`, // Even lower quality
+    `https://${baseUrl}/${videoId}/playlist.m3u8`, // HLS
+    `https://${baseUrl}/${videoId}/play_720p.mp4`, // Direct MP4
+    `https://${baseUrl}/${videoId}/play_480p.mp4`, // Lower quality fallback
+    `https://${baseUrl}/${videoId}/play_360p.mp4`, // Even lower quality
   ];
 
   const handleVideoLoad = () => {

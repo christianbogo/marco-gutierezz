@@ -7,27 +7,23 @@ import "../styles/portfolio.css";
 const Portfolio = () => {
   const projects = getFeaturedProjects();
 
-  // Use manual thumbnails as primary, with Bunny.net as fallback (once access is fixed)
   const getProjectThumbnail = (project: any) => {
-    // Prioritize manual thumbnails since Bunny.net is returning 403
     if (project.thumbnails && project.thumbnails.length > 0) {
       return project.thumbnails[0];
     }
 
-    // Fallback to Bunny.net thumbnail (for when access is configured)
     const firstVideo = project.videos[0];
     if (firstVideo) {
       return `https://vz-${firstVideo.bunnyLibraryId}.b-cdn.net/${firstVideo.bunnyVideoId}/thumbnail.jpg`;
     }
 
-    // Final fallback
     return "/images/placeholder.jpg";
   };
 
   return (
     <section className="section featured-productions" id="portfolio">
       <FadeInSection>
-        <h2 className="section-title">Featured Productions</h2>
+        <h2 className="featured-productions-title">Featured Productions</h2>
       </FadeInSection>
       <div className="image-grid">
         {projects.map((project) => (
@@ -43,7 +39,7 @@ const Portfolio = () => {
                   <span className="view-project">View Project</span>
                 </div>
               </div>
-              <h3 className="project-title">{project.title}</h3>
+              <h3 className="portfolio-project-title">{project.title}</h3>
             </Link>
           </FadeInSection>
         ))}
