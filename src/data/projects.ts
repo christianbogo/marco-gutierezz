@@ -407,10 +407,6 @@ export const projects: Project[] = [
       "/images/projects/thumbnails/thousand-men-2.png",
       "/images/projects/thumbnails/thousand-men-3.png",
       "/images/projects/thumbnails/thousand-men-4.png",
-      "/images/projects/thumbnails/ten-thousand-1.png",
-      "/images/projects/thumbnails/ten-thousand-2.png",
-      "/images/projects/thumbnails/ten-thousand-3.png",
-      "/images/projects/thumbnails/ten-thousand-4.png",
     ],
     videos: [
       {
