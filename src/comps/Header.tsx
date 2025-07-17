@@ -90,12 +90,12 @@ const Header: React.FC = () => {
     <nav ref={navRef} className={navClassName}>
       <Link to="/" className="navbar-brand">
         <img
-          src="/logo.svg"
+          src="/logo-light.svg"
           alt="Marco Gutierezz Logo"
           className="brand-logo brand-logo-light"
         />
         <img
-          src="/18-video.svg"
+          src="/logo-dark.svg"
           alt="Marco Gutierezz Logo"
           className="brand-logo brand-logo-dark"
         />
