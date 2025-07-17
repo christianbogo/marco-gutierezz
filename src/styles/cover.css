@@ -142,10 +142,10 @@
 }
 
 .client-logo {
-  height: clamp(50px, 8vw, 80px);
+  height: clamp(80px, 14vw, 160px) !important;
   opacity: 0.7;
   transition: opacity 0.3s ease;
-  border-radius: 6px;
+  border-radius: 12px !important;
 }
 
 .client-logo-link:hover .client-logo {
@@ -188,6 +188,17 @@
 .social-icon-cover:hover {
   opacity: 1;
   transform: scale(1.1);
+}
+
+.cover-background-image.slideshow-bg {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+}
+.cover-background-image.slideshow-bg.fade-in {
+  opacity: 1;
+}
+.cover-background-image.slideshow-bg.fade-out {
+  opacity: 0;
 }
 
 @media (max-width: 900px) {

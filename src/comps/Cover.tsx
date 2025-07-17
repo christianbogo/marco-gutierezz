@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import FadeInSection from "../utils/FadeInSection";
 import { projects } from "../data/projects";
 import "../styles/cover.css";
+
+const SLIDESHOW_INTERVAL = 4000; // 4 seconds
 
 const Cover = () => {
   const userEmail = "marcogutierrezho@gmail.com";
@@ -10,30 +12,61 @@ const Cover = () => {
     Array<{ project: any; thumbnail: string }>
   >([]);
 
+  // Slideshow state
+  const [slideshowImages, setSlideshowImages] = useState<string[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [fade, setFade] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
-    // Get all featured projects and their thumbnails
+    // Get all featured projects and their thumbnails for preview images
     const featuredProjects = projects.filter((p) => p.featured);
     const allThumbnails: Array<{ project: any; thumbnail: string }> = [];
+    const allImages: string[] = [];
 
     featuredProjects.forEach((project) => {
       project.thumbnails.forEach((thumbnail) => {
         allThumbnails.push({ project, thumbnail });
+        allImages.push(thumbnail);
       });
     });
 
-    // Shuffle and take first 3
+    // Shuffle and take first 3 for preview
     const shuffled = allThumbnails.sort(() => 0.5 - Math.random());
     setRandomProjects(shuffled.slice(0, 3));
+
+    // Shuffle all images for slideshow
+    const shuffledImages = allImages.sort(() => 0.5 - Math.random());
+    setSlideshowImages(shuffledImages);
+    setCurrentSlide(0);
   }, []);
+
+  useEffect(() => {
+    if (slideshowImages.length < 2) return;
+    intervalRef.current = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+        setFade(true);
+      }, 400); // fade out duration
+    }, SLIDESHOW_INTERVAL);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [slideshowImages]);
+
+  const backgroundImage =
+    slideshowImages.length > 0
+      ? `url('${slideshowImages[currentSlide]}')`
+      : "url('https://picsum.photos/seed/marcoOutdoorBg/1920/1080')";
 
   return (
     <section className="cover-section" id="home">
       <div
-        className="cover-background-image"
-        style={{
-          backgroundImage:
-            "url('https://picsum.photos/seed/marcoOutdoorBg/1920/1080')",
-        }}
+        className={`cover-background-image slideshow-bg${
+          fade ? " fade-in" : " fade-out"
+        }`}
+        style={{ backgroundImage }}
         title="Outdoor scenic background for Marco Visuals"
       ></div>
       <div className="cover-overlay-tint"></div>
