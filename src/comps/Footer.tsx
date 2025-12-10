@@ -9,6 +9,11 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-left">
             <p>Seattle, Washington, United States</p>
+            <p style={{ marginTop: "5px" }}>
+              <a href="mailto:marcogutierrezho@gmail.com" className="footer-link">
+                marcogutierrezho@gmail.com
+              </a>
+            </p>
           </div>
           <div className="footer-center footer-social-icons">
             <a

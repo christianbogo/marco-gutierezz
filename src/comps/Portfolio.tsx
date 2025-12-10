@@ -1,24 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FadeInSection from "../utils/FadeInSection";
-import { getFeaturedProjects } from "../data/projects";
+import { client, urlFor } from "../lib/sanity";
 import "../styles/portfolio.css";
 
-const Portfolio = () => {
-  const projects = getFeaturedProjects();
+interface Project {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  thumbnails: any[];
+  videos: any[];
+}
 
-  const getProjectThumbnail = (project: any) => {
+const Portfolio = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch featured projects and settings
+    const query = `{
+      "projects": *[_type == "project" && featured == true]{
+          _id,
+          title,
+          slug,
+          thumbnails,
+          videos
+      },
+      "settings": *[_type == "settings"][0]
+    }`;
+
+    (client as any)
+      .fetch(query)
+      .then((data: any) => {
+        const { projects, settings } = data;
+
+        // Enhance projects with default library ID
+        if (projects && settings?.bunnyLibraryId) {
+          projects.forEach((p: any) => {
+            if (p.videos) {
+              p.videos.forEach((v: any) => {
+                if (!v.bunnyLibraryId) {
+                  v.bunnyLibraryId = settings.bunnyLibraryId;
+                }
+              });
+            }
+          });
+        }
+
+        setProjects(projects || []);
+        setLoading(false);
+      })
+      .catch(console.error);
+  }, []);
+
+  const getProjectThumbnail = (project: Project) => {
+    // 1. Try Sanity Image
     if (project.thumbnails && project.thumbnails.length > 0) {
-      return project.thumbnails[0];
+      return urlFor(project.thumbnails[0]).width(400).url();
     }
 
-    const firstVideo = project.videos[0];
-    if (firstVideo) {
-      return `https://vz-${firstVideo.bunnyLibraryId}.b-cdn.net/${firstVideo.bunnyVideoId}/thumbnail.jpg`;
+    // 2. Try Bunny.net Video Thumbnail
+    if (project.videos && project.videos.length > 0) {
+      const firstVideo = project.videos[0];
+      if (firstVideo.bunnyLibraryId && firstVideo.bunnyVideoId) {
+        return `https://vz-${firstVideo.bunnyLibraryId}.b-cdn.net/${firstVideo.bunnyVideoId}/thumbnail.jpg`;
+      }
     }
 
     return "/images/placeholder.jpg";
   };
+
+  if (loading) {
+    return (
+      <section className="section featured-productions" id="portfolio">
+        <div className="loading-container" style={{ padding: "100px", textAlign: "center", color: "#fff" }}>
+          Loading projects...
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section featured-productions" id="portfolio">
@@ -27,8 +87,8 @@ const Portfolio = () => {
       </FadeInSection>
       <div className="image-grid">
         {projects.map((project) => (
-          <FadeInSection key={project.id} className="image-grid-item">
-            <Link to={`/project/${project.slug}`} className="project-link">
+          <FadeInSection key={project._id} className="image-grid-item">
+            <Link to={`/project/${project.slug.current}`} className="project-link">
               <div className="image-wrapper">
                 <img
                   src={getProjectThumbnail(project)}
