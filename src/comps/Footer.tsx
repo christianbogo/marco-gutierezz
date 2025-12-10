@@ -23,7 +23,7 @@ const Footer = () => {
               aria-label="Instagram"
             >
               <img
-                src="/images/icons/instagram.svg"
+                src="/icons/instagram.svg"
                 alt="Instagram"
                 className="social-icon"
               />

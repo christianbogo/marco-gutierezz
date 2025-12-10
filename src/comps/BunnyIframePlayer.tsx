@@ -27,9 +27,8 @@ const BunnyIframePlayer: React.FC<BunnyIframePlayerProps> = ({
   if (loop) params.set("loop", "true");
   if (muted) params.set("muted", "true");
 
-  const iframeUrl = `https://iframe.mediadelivery.net/embed/${libraryId}/${videoId}${
-    params.toString() ? `?${params.toString()}` : ""
-  }`;
+  const iframeUrl = `https://iframe.mediadelivery.net/embed/${libraryId}/${videoId}${params.toString() ? `?${params.toString()}` : ""
+    }`;
 
   return (
     <div className={`bunny-iframe-container ${className}`}>

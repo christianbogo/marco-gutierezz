@@ -60,7 +60,7 @@ const About = () => {
             <SwiperSlide>
               <div className="service-item">
                 <img
-                  src="/images/icons/video.svg"
+                  src="/icons/video.svg"
                   alt="Video Production Icon"
                   className="service-icon-img"
                 />
@@ -74,7 +74,7 @@ const About = () => {
             <SwiperSlide>
               <div className="service-item">
                 <img
-                  src="/images/icons/film.svg"
+                  src="/icons/film.svg"
                   alt="Content Development Icon"
                   className="service-icon-img"
                 />
@@ -88,7 +88,7 @@ const About = () => {
             <SwiperSlide>
               <div className="service-item">
                 <img
-                  src="/images/icons/monitor.svg"
+                  src="/icons/monitor.svg"
                   alt="Post-Production Icon"
                   className="service-icon-img"
                 />

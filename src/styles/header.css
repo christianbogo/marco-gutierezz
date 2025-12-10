@@ -34,12 +34,15 @@
 .navbar.mode-initial .nav-link-item {
   color: #fff;
 }
+
 .navbar.mode-initial .brand-icon {
   background-color: #fff;
 }
+
 .navbar.mode-initial .brand-logo-light {
   display: inline-block;
 }
+
 .navbar.mode-initial .brand-logo-dark {
   display: none;
 }
@@ -52,16 +55,20 @@
   border-bottom: 1px solid #dddddd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .navbar.mode-fixed .navbar-brand,
 .navbar.mode-fixed .nav-link-item {
   color: #111;
 }
+
 .navbar.mode-fixed .brand-icon {
   background-color: #111;
 }
+
 .navbar.mode-fixed .brand-logo-light {
   display: none;
 }
+
 .navbar.mode-fixed .brand-logo-dark {
   display: inline-block;
 }
@@ -81,30 +88,36 @@
   display: flex;
   align-items: center;
 }
+
 .brand-icon {
   display: inline-block;
   width: 0.8em;
   height: 0.8em;
   margin-right: 0.5em;
 }
+
 .brand-text-container {
   display: inline-block;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
+
 .brand-text {
   display: inline;
 }
+
 @media (max-width: 800px) {
   .brand-text-visuals {
     display: none;
   }
 }
+
 @media (max-width: 600px) {
   .brand-text-gutierezz {
     display: none;
   }
 }
+
 @media (max-width: 500px) {
   .brand-text-marco {
     display: none;
@@ -123,9 +136,11 @@
   letter-spacing: 0.5px;
   margin-right: 25px;
 }
+
 .navbar.mode-initial .nav-link-item:hover {
   color: #ccc;
 }
+
 .navbar.mode-fixed .nav-link-item:hover {
   color: #555;
 }
@@ -147,6 +162,7 @@
   transition: background-color 0.3s ease;
   font-size: 0.8em;
 }
+
 .hire-us-button:hover {
   background-color: #f0c13e;
 }
@@ -157,5 +173,5 @@
   margin-right: 8px;
   vertical-align: middle;
   position: relative;
-  bottom: 2px; /* Raise the logo slightly for better alignment */
+  /* Raise the logo slightly for better alignment */
 }

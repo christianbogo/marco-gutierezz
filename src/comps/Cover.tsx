@@ -1,30 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { client, urlFor } from "../lib/sanity";
 import FadeInSection from "../utils/FadeInSection";
 import "../styles/cover.css";
 
 const SLIDESHOW_INTERVAL = 4000; // 4 seconds
 
 // Only use these specific thumbnails for the slideshow
-const SELECTED_THUMBNAILS = [
-  "/images/projects/thumbnails/adrian-3.png",
-  "/images/projects/thumbnails/adrian-4.png",
-  "/images/projects/thumbnails/adrian-5.png",
-  "/images/projects/thumbnails/brudi-brothers-4.png",
-  "/images/projects/thumbnails/brudi-brothers-6.png",
-  "/images/projects/thumbnails/filson-5.png",
-  "/images/projects/thumbnails/filson-6.png",
-  "/images/projects/thumbnails/filson-7.png",
-  "/images/projects/thumbnails/filson-10.png",
-  "/images/projects/thumbnails/filson-11.png",
-  "/images/projects/thumbnails/filson-12.png",
-  "/images/projects/thumbnails/realtree-3.png",
-  "/images/projects/thumbnails/realtree-4.png",
-  "/images/projects/thumbnails/thousand-men-1.png",
-  "/images/projects/thumbnails/thousand-men-2.png",
-  "/images/projects/thumbnails/thousand-men-3.png",
-  "/images/projects/thumbnails/thousand-men-4.png",
-];
-
 const Cover = () => {
   const userEmail = "marcogutierrezho@gmail.com";
 
@@ -35,11 +16,23 @@ const Cover = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Shuffle the selected thumbnails for the slideshow
-    const shuffledImages = [...SELECTED_THUMBNAILS].sort(
-      () => 0.5 - Math.random()
-    );
-    setSlideshowImages(shuffledImages);
+    const fetchImages = async () => {
+      try {
+        const query = `*[_type == "project" && defined(thumbnails)][].thumbnails[0]`;
+        const images = await client.fetch(query);
+
+        if (images && images.length > 0) {
+          const imageUrls = images.map((img: any) => urlFor(img).url());
+          // Shuffle the fetched images
+          const shuffledImages = imageUrls.sort(() => 0.5 - Math.random());
+          setSlideshowImages(shuffledImages);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cover images:", error);
+      }
+    };
+
+    fetchImages();
     setCurrentSlide(0);
   }, []);
 
@@ -65,9 +58,8 @@ const Cover = () => {
   return (
     <section className="cover-section" id="home">
       <div
-        className={`cover-background-image slideshow-bg${
-          fade ? " fade-in" : " fade-out"
-        }`}
+        className={`cover-background-image slideshow-bg${fade ? " fade-in" : " fade-out"
+          }`}
         style={{ backgroundImage }}
         title="Outdoor scenic background for Marco Visuals"
       ></div>
@@ -97,7 +89,7 @@ const Cover = () => {
             aria-label="Instagram"
           >
             <img
-              src="/images/icons/instagram.svg"
+              src="/icons/instagram.svg"
               alt="Instagram"
               className="social-icon-cover"
             />
